@@ -1,0 +1,10 @@
+# Intermediary files
+*.o
+
+# Mac
+.DS_Store
+
+# Xcode
+ObjCInXML/build
+ObjCInXML/ObjCInXML.xcodeproj/xcuserdata/
+*.xcuserstate

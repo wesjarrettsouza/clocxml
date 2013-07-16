@@ -1,0 +1,57 @@
+<?xml version='1.0'?>
+<Metadata>
+<Enum>
+<EnumConstant name='zero', value='0'/>
+<EnumConstant name='one', value='1'/>
+<EnumConstant name='two', value='2'/>
+</Enum>
+<ObjCProtocol name='testProtocol'>
+<ObjCMethod selector='testStaticProtocolFunction:', static='true'>
+<Parameter name='array', canonical_type='NSArray *', type='NSArray *', object='true'/>
+<ReturnValue canonical_type='void', type='void'/>
+</ObjCMethod>
+<ObjCMethod selector='testMemberProtocolFunction:'>
+<Parameter name='dict', canonical_type='NSDictionary *', type='NSDictionary *', object='true'/>
+<ReturnValue canonical_type='void', type='void'/>
+</ObjCMethod>
+</ObjCProtocol>
+<ObjCInterface name='foobar', super='NSObject'>
+<ObjCMethod selector='testFunctionPointer:', static='true'>
+<Parameter name='foo', canonical_type='int (^)(const id *, int, void *, signed char)', type='handler', block='true'>
+<Parameter canonical_type='const id *', type='const id *'/>
+<Parameter canonical_type='int', type='int'/>
+<Parameter canonical_type='void *', type='void *'/>
+<Parameter canonical_type='signed char', type='BOOL'/>
+<ReturnValue canonical_type='int', type='int'/>
+</Parameter>
+<ReturnValue canonical_type='void', type='void'/>
+</ObjCMethod>
+<ObjCMethod selector='hello:something:another:'>
+<Parameter name='hi', canonical_type='NSString *', type='NSString *', object='true'/>
+<Parameter name='qux', canonical_type='signed char', type='BOOL'/>
+<Parameter name='what', canonical_type='unsigned long', type='NSUInteger'/>
+<ReturnValue canonical_type='void', type='void'/>
+</ObjCMethod>
+<ObjCMethod selector='testProtoclInline:'>
+<Parameter name='huh', canonical_type='void (^)(NSString *)', type='void (^)(NSString *)', block='true'>
+<Parameter canonical_type='NSString *', type='NSString *', object='true'/>
+<ReturnValue canonical_type='void', type='void'/>
+</Parameter>
+<ReturnValue canonical_type='void', type='void'/>
+</ObjCMethod>
+<ObjCMethod selector='foobar'>
+<ReturnValue canonical_type='id<NSObject>', type='id<NSObject>', object='true'/>
+</ObjCMethod>
+<ObjCMethod selector='setFoobar:'>
+<Parameter name='foobar', canonical_type='id<NSObject>', type='id<NSObject>', object='true'/>
+<ReturnValue canonical_type='void', type='void'/>
+</ObjCMethod>
+</ObjCInterface>
+<ObjCInterface name='qux', super='foobar'>
+<ImplementsProtocol name='NSObject'/>
+<ObjCMethod selector='testSomething:', static='true'>
+<Parameter name='arg', canonical_type='qux *', type='qux *', object='true'/>
+<ReturnValue canonical_type='void', type='void'/>
+</ObjCMethod>
+</ObjCInterface>
+</Metadata>

@@ -1,0 +1,8 @@
+[
+  { "directory": "/Users/wsouza/projects/ZDK/cxx-bindings-generator/ios/generator/ObjCInXML/proj/tests/",
+    "command": "clang -ObjC -I/usr/local/bin/../lib/clang/3.4/include -c -o test test.h",
+    "file": "test.h" },
+    {"directory": "/Users/wsouza/projects/ZDK/cxx-bindings-generator/ios/generator/ObjCInXML/proj/tests/",
+    "command": "clang -ObjC -I/usr/local/bin/../lib/clang/3.4/include -c -o NSDictionary NSDictionary.h",
+    "file": "NSDictionary.h" },
+]
