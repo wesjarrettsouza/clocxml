@@ -9,7 +9,7 @@ OBJECT_FOLDER  := ./lib
 BUILD_FOLDER  := ./bin
 
 
-EXE  := ./bin/OCXMLParse
+EXE  := ./bin/clocxml
 CXXFLAGS  := -I$(INCLUDE_FOLDER) $(shell $(LLVMCONFIG) --cxxflags) 
 LLVMLDFLAGS  := $(shell $(LLVMCONFIG) --ldflags --libs $(LLVMCOMPONENTS))
 

@@ -29,7 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F730E592178A294500AC952F /* OCXMLParse */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OCXMLParse; sourceTree = BUILT_PRODUCTS_DIR; };
+		F730E592178A294500AC952F /* clocxml */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = clocxml; sourceTree = BUILT_PRODUCTS_DIR; };
 		F730E597178A294500AC952F /* ObjCInXML.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ObjCInXML.1; sourceTree = "<group>"; };
 		F7FBBA76178F4FA6006DDC5A /* OCXMLElementTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OCXMLElementTree.cpp; path = ../../proj/source/OCXMLElementTree.cpp; sourceTree = "<group>"; };
 		F7FBBA7A178F4FAE006DDC5A /* OCXMLCustomMatchers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OCXMLCustomMatchers.h; path = ../../proj/includes/OCXMLCustomMatchers.h; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		F730E593178A294500AC952F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F730E592178A294500AC952F /* OCXMLParse */,
+				F730E592178A294500AC952F /* clocxml */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 			);
 			name = ObjCInXML;
 			productName = ObjCInXML;
-			productReference = F730E592178A294500AC952F /* OCXMLParse */;
+			productReference = F730E592178A294500AC952F /* clocxml */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -371,7 +371,7 @@
 					"-lLLVMCore",
 					"-lLLVMSupport",
 				);
-				PRODUCT_NAME = OCXMLParse;
+				PRODUCT_NAME = clocxml;
 				SYMROOT = "$(SRCROOT)/../proj/bin";
 			};
 			name = Debug;
@@ -538,7 +538,7 @@
 					"-lLLVMCore",
 					"-lLLVMSupport",
 				);
-				PRODUCT_NAME = OCXMLParse;
+				PRODUCT_NAME = clocxml;
 				SYMROOT = "$(SRCROOT)/../proj/bin";
 			};
 			name = Release;

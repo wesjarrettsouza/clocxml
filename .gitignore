@@ -7,4 +7,5 @@
 # Xcode
 ObjCInXML/build
 ObjCInXML/ObjCInXML.xcodeproj/xcuserdata/
+ObjCInXML/ObjCInXML.xcodeproj/project.xcworkspace/xcuserdata/
 *.xcuserstate
