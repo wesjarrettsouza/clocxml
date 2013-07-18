@@ -27,10 +27,12 @@ using namespace OCXML::ElementTree::ElementFactory;
 void processTypeAttributes(QualType qualType, Element* element){
     std::string canonical_type = qualType.getCanonicalType().getAsString();
     std::string type = qualType.getAsString();
+    std::string enumeral = (qualType->isEnumeralType() ? "true" : "false");
     std::string object = (qualType->isObjCObjectPointerType() ? "true" : "false");
     std::string block = (qualType->isBlockPointerType() ? "true" : "false");
     element->addAttribute("canonical_type", canonical_type.c_str());
     element->addAttribute("type", type.c_str());
+    element->addAttribute("enum", enumeral.c_str());
     element->addTrueFalseAttribute("object", object.c_str());
     element->addTrueFalseAttribute("block", block.c_str());
 }
@@ -166,6 +168,8 @@ void OCXML::ASTConsumers::ProtocolConsumer::run(const MatchFinder::MatchResult &
 void OCXML::ASTConsumers::EnumConsumer::run(const MatchFinder::MatchResult &Result) {
     if (const EnumDecl *enumDecl = Result.Nodes.getNodeAs<clang::EnumDecl>("enum")){
         Element* enumElement = createEnumElement(enumDecl->getNameAsString().c_str());
+        TypedefNameDecl *typedefName = enumDecl->getCanonicalDecl()->getTypedefNameForAnonDecl();
+        if (typedefName) enumElement->addAttribute("typedef", typedefName->getNameAsString().c_str());
         _root->addChild(enumElement);
         processEnumConstants(enumDecl, enumElement);
     }

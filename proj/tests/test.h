@@ -6,11 +6,23 @@
 
 @class foobar;
 
-enum {
+typedef enum {
 	zero,
 	one,
 	two
+} enumtype;
+
+enum tag{
+	three = 3,
+	four,
+	five
 };
+
+typedef enum tag2{
+	six = 6,
+	seven,
+	eight
+} enumtype2;
 
 @protocol testProtocol
 	
@@ -37,6 +49,9 @@ typedef int (^handler)(const id uniquename[], int two, void* three, BOOL four);
 }
 
 +(void)testSomething:(qux *)arg;
+-(void)testEnumType:(enumtype)arg;
+-(enum tag)testEnumTag;
+-(enum tag2)testEnumTag2:(enumtype2)arg;
 
 @end
 

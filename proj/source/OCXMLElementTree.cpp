@@ -9,6 +9,16 @@
 #define XMLROOT "<?xml version='1.0'?>"
 #define TABULATE if(Options::getGlobalOptions()->isOptionSet(OPTION_TABULATE)){indent(depth);} else {}
 
+void replace_gtlt(std::string& string){
+    std::string::size_type pos;
+    while ((pos = string.find("<")) != std::string::npos){
+        string.replace(pos, 1, "&lt;");
+    }
+    while ((pos = string.find(">")) != std::string::npos){
+        string.replace(pos, 1, "&gt;");
+    }
+}
+
 std::string string_format(const char* format, ...){
     int size = 256;
     std::string str;
@@ -47,7 +57,9 @@ Element::Attribute::~Attribute(){
 }
 
 std::string Element::Attribute::getXMLString(){
-    return string_format("%s=\'%s\'", _name, _value);
+    std::string result = string_format("%s=\'%s\'", _name, _value);
+    replace_gtlt(result);
+    return result;
 }
 
 Element::Element(const char* name){
@@ -86,7 +98,7 @@ std::string Element::getAttributesXMLString() const {
     std::list<Attribute*>::iterator last = (--_attributes->end());
     for (std::list<Attribute*>::iterator iter = _attributes->begin(); iter != last; iter++){
         std::string attributeString = (*iter)->getXMLString();
-        attributesString += string_format("%s, ", attributeString.c_str());
+        attributesString += string_format("%s ", attributeString.c_str());
     }
     attributesString += (*last)->getXMLString();
     return attributesString;

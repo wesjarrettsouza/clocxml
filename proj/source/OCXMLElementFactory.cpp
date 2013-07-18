@@ -42,7 +42,7 @@ namespace ElementFactory {
     
     Element* createEnumElement(const char* name){
         Element* result = new Element("Enum");
-        result->addAttribute("name", name);
+        result->addAttribute("tag", name);
         return result;
     }
     
