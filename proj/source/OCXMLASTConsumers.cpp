@@ -27,14 +27,10 @@ using namespace OCXML::ElementTree::ElementFactory;
 void processTypeAttributes(QualType qualType, Element* element){
     std::string canonical_type = qualType.getCanonicalType().getAsString();
     std::string type = qualType.getAsString();
-    std::string enumeral = (qualType->isEnumeralType() ? "true" : "false");
-    std::string object = (qualType->isObjCObjectPointerType() ? "true" : "false");
-    std::string block = (qualType->isBlockPointerType() ? "true" : "false");
+    std::string kind = qualType.getCanonicalType()->getTypeClassName();
     element->addAttribute("canonical_type", canonical_type.c_str());
     element->addAttribute("type", type.c_str());
-    element->addAttribute("enum", enumeral.c_str());
-    element->addTrueFalseAttribute("object", object.c_str());
-    element->addTrueFalseAttribute("block", block.c_str());
+    element->addAttribute("kind", kind.c_str());
 }
 
 Element* processBlockParameter(QualType paramType){
