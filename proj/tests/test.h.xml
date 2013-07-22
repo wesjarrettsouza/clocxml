@@ -1,78 +1,82 @@
 <?xml version='1.0'?>
 <Metadata>
-<Enum typedef='enumtype'>
-<EnumConstant name='zero' value='0'/>
-<EnumConstant name='one' value='1'/>
-<EnumConstant name='two' value='2'/>
-</Enum>
-<Enum tag='tag'>
-<EnumConstant name='three' value='3'/>
-<EnumConstant name='four' value='4'/>
-<EnumConstant name='five' value='5'/>
-</Enum>
-<Enum tag='tag2'>
-<EnumConstant name='six' value='6'/>
-<EnumConstant name='seven' value='7'/>
-<EnumConstant name='eight' value='8'/>
-</Enum>
-<ObjCProtocol name='testProtocol'>
-<ObjCMethod selector='testStaticProtocolFunction:' static='true'>
-<Parameter name='array' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-<ObjCMethod selector='testMemberProtocolFunction:'>
-<Parameter name='dict' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-</ObjCProtocol>
-<ObjCInterface name='foobar' super='NSObject'>
-<ObjCMethod selector='testFunctionPointer:' static='true'>
-<Parameter name='foo' canonical_type='int (^)(const id *, int, void *, signed char)' type='handler' kind='BlockPointer'>
-<Parameter canonical_type='const id *' type='const id *' kind='Pointer'/>
-<Parameter canonical_type='int' type='int' kind='Builtin'/>
-<Parameter canonical_type='void *' type='void *' kind='Pointer'/>
-<Parameter canonical_type='signed char' type='BOOL' kind='Builtin'/>
-<ReturnValue canonical_type='int' type='int' kind='Builtin'/>
-</Parameter>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-<ObjCMethod selector='hello:something:another:'>
-<Parameter name='hi' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
-<Parameter name='qux' canonical_type='signed char' type='BOOL' kind='Builtin'/>
-<Parameter name='what' canonical_type='unsigned long' type='NSUInteger' kind='Builtin'/>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-<ObjCMethod selector='testProtoclInline:'>
-<Parameter name='huh' canonical_type='void (^)(NSString *)' type='void (^)(NSString *)' kind='BlockPointer'>
-<Parameter canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</Parameter>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-<ObjCMethod selector='foobar'>
-<ReturnValue canonical_type='id&lt;NSObject&gt;' type='id&lt;NSObject&gt;' kind='ObjCObjectPointer'/>
-</ObjCMethod>
-<ObjCMethod selector='setFoobar:'>
-<Parameter name='foobar' canonical_type='id&lt;NSObject&gt;' type='id&lt;NSObject&gt;' kind='ObjCObjectPointer'/>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-</ObjCInterface>
-<ObjCInterface name='qux' super='foobar'>
-<ImplementsProtocol name='NSObject'/>
-<ObjCMethod selector='testSomething:' static='true'>
-<Parameter name='arg' canonical_type='qux *' type='qux *' kind='ObjCObjectPointer'/>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-<ObjCMethod selector='testEnumType:'>
-<Parameter name='arg' canonical_type='enumtype' type='enumtype' kind='Enum'/>
-<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
-</ObjCMethod>
-<ObjCMethod selector='testEnumTag'>
-<ReturnValue canonical_type='enum tag' type='enum tag' kind='Enum'/>
-</ObjCMethod>
-<ObjCMethod selector='testEnumTag2:'>
-<Parameter name='arg' canonical_type='enum tag2' type='enumtype2' kind='Enum'/>
-<ReturnValue canonical_type='enum tag2' type='enum tag2' kind='Enum'/>
-</ObjCMethod>
-</ObjCInterface>
+	<Enum typedef='enumtype'>
+		<EnumConstant name='zero' value='0'/>
+		<EnumConstant name='one' value='1'/>
+		<EnumConstant name='two' value='2'/>
+	</Enum>
+	<Enum tag='tag'>
+		<EnumConstant name='three' value='3'/>
+		<EnumConstant name='four' value='4'/>
+		<EnumConstant name='five' value='5'/>
+	</Enum>
+	<Enum tag='tag2'>
+		<EnumConstant name='six' value='6'/>
+		<EnumConstant name='seven' value='7'/>
+		<EnumConstant name='eight' value='8'/>
+	</Enum>
+	<ObjCProtocol name='testProtocol'>
+		<ObjCMethod selector='testStaticProtocolFunction:' static='true'>
+			<Parameter name='array' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='testMemberProtocolFunction:'>
+			<Parameter name='dict' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+	</ObjCProtocol>
+	<ObjCInterface name='foobar' super='NSObject'>
+		<ObjCMethod selector='testFunctionPointer:' static='true'>
+			<Parameter name='foo' canonical_type='int (^)(const id *, int, void *, signed char)' type='handler' kind='BlockPointer'>
+				<Parameter canonical_type='const id *' type='const id *' kind='Pointer'/>
+				<Parameter canonical_type='int' type='int' kind='Builtin'/>
+				<Parameter canonical_type='void *' type='void *' kind='Pointer'/>
+				<Parameter canonical_type='signed char' type='BOOL' kind='Builtin'/>
+				<ReturnValue canonical_type='int' type='int' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='hello:something:another:'>
+			<Parameter name='hi' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='qux' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<Parameter name='what' canonical_type='unsigned long' type='NSUInteger' kind='Builtin'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='testProtoclInline:'>
+			<Parameter name='huh' canonical_type='void (^)(NSString *)' type='void (^)(NSString *)' kind='BlockPointer'>
+				<Parameter canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='foobar'>
+			<ReturnValue canonical_type='id&lt;NSObject&gt;' type='id&lt;NSObject&gt;' kind='ObjCObjectPointer'>
+				<ImplementsProtocol name='NSObject'/>
+			</ReturnValue>
+		</ObjCMethod>
+		<ObjCMethod selector='setFoobar:'>
+			<Parameter name='foobar' canonical_type='id&lt;NSObject&gt;' type='id&lt;NSObject&gt;' kind='ObjCObjectPointer'>
+				<ImplementsProtocol name='NSObject'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+	</ObjCInterface>
+	<ObjCInterface name='qux' super='foobar'>
+		<ImplementsProtocol name='NSObject'/>
+		<ObjCMethod selector='testSomething:' static='true'>
+			<Parameter name='arg' canonical_type='qux *' type='qux *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='testEnumType:'>
+			<Parameter name='arg' canonical_type='enumtype' type='enumtype' kind='Enum'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='testEnumTag'>
+			<ReturnValue canonical_type='enum tag' type='enum tag' kind='Enum'/>
+		</ObjCMethod>
+		<ObjCMethod selector='testEnumTag2:'>
+			<Parameter name='arg' canonical_type='enum tag2' type='enumtype2' kind='Enum'/>
+			<ReturnValue canonical_type='enum tag2' type='enum tag2' kind='Enum'/>
+		</ObjCMethod>
+	</ObjCInterface>
 </Metadata>

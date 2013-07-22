@@ -33,15 +33,29 @@ void processTypeAttributes(QualType qualType, Element* element){
     element->addAttribute("kind", kind.c_str());
 }
 
+void processObjectPointerProtocols(const Type* type, Element* element){
+    const ObjCObjectPointerType *objcpt = type->getAs<ObjCObjectPointerType>();
+    ObjCObjectPointerType::qual_iterator iter = objcpt->qual_begin();
+    for (; iter != objcpt->qual_end(); iter++){
+        std::string name = (*iter)->getNameAsString();
+        Element* child = createImplementsProtocolElement(name.c_str());
+        element->addChild(child);
+    }
+}
+
 Element* processBlockParameter(QualType paramType){
     Element* result = createParameterElement("");
     processTypeAttributes(paramType, result);
+    if (paramType->isObjCObjectPointerType())
+        processObjectPointerProtocols(paramType.getTypePtr(), result);
     return result;
 }
 
 Element* processBlockReturnValue(const FunctionProtoType* block, Element *blockElement){
     Element* result = createReturnValueElement();
     processTypeAttributes(block->getResultType(), result);
+    if (block->getResultType()->isObjCObjectPointerType())
+        processObjectPointerProtocols(block->getResultType().getTypePtr(), result);
     return result;
 }
 
@@ -49,12 +63,16 @@ Element* processParameter(ParmVarDecl* param){
     std::string name = param->getNameAsString();
     Element* result = createParameterElement(name.c_str());
     processTypeAttributes(param->getType(), result);
+    if (param->getType()->isObjCObjectPointerType())
+        processObjectPointerProtocols(param->getType().getTypePtr(), result);
     return result;
 }
 
 Element* processMethodReturnValue(ObjCMethodDecl* method){
     Element* result = createReturnValueElement();
     processTypeAttributes(method->getResultType(), result);
+    if (method->getResultType()->isObjCObjectPointerType())
+        processObjectPointerProtocols(method->getResultType().getTypePtr(), result);
     return result;
 }
 
