@@ -38,7 +38,7 @@ void processObjectPointerProtocols(const Type* type, Element* element){
     ObjCObjectPointerType::qual_iterator iter = objcpt->qual_begin();
     for (; iter != objcpt->qual_end(); iter++){
         std::string name = (*iter)->getNameAsString();
-        Element* child = createImplementsProtocolElement(name.c_str());
+        Element* child = createConformsToProtocolElement(name.c_str());
         element->addChild(child);
     }
 }
@@ -133,7 +133,7 @@ void processImplementedProtocols(const ObjCInterfaceDecl* interface, Element* in
     ObjCInterfaceDecl::protocol_iterator iter = interface->protocol_begin();
     for(; iter!= interface->protocol_end(); iter++){
         std::string protocolName = (*iter)->getNameAsString();
-        Element* implementedProtocol = createImplementsProtocolElement(protocolName.c_str());
+        Element* implementedProtocol = createConformsToProtocolElement(protocolName.c_str());
         interfaceElement->addChild(implementedProtocol);
     }
 }

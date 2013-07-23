@@ -10,8 +10,8 @@ namespace ElementFactory {
         return result;
     }
     
-    Element* createImplementsProtocolElement(const char* name){
-        Element* result = new Element("ImplementsProtocol");
+    Element* createConformsToProtocolElement(const char* name){
+        Element* result = new Element("ConformsToProtocol");
         result->addAttribute("name", name);
         return result;
     }

@@ -10,7 +10,7 @@ namespace ElementFactory {
         
     Element* createObjCInterfaceElement(const char* name);
     
-    Element* createImplementsProtocolElement(const char* name);
+    Element* createConformsToProtocolElement(const char* name);
     
     Element* createObjCProtocolElement(const char* name);
     
