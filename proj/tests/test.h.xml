@@ -15,7 +15,7 @@
 <EnumConstant name='seven' value='7'/>
 <EnumConstant name='eight' value='8'/>
 </Enum>
-<ObjCProtocol name='testProtocol'>
+<ObjCProtocol name='testProtocol' file='test.h'>
 <ObjCMethod selector='testStaticProtocolFunction:' static='true'>
 <Parameter name='array' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
 <ReturnValue canonical_type='void' type='void' kind='Builtin'/>
@@ -25,7 +25,7 @@
 <ReturnValue canonical_type='void' type='void' kind='Builtin'/>
 </ObjCMethod>
 </ObjCProtocol>
-<ObjCInterface name='foobar' super='NSObject'>
+<ObjCInterface name='foobar' super='NSObject' file='test.h'>
 <ObjCMethod selector='testFunctionPointer:' static='true'>
 <Parameter name='foo' canonical_type='int (^)(const id *, int, void *, signed char)' type='handler' kind='BlockPointer'>
 <Parameter canonical_type='const id *' type='const id *' kind='Pointer'/>
@@ -61,7 +61,7 @@
 <ReturnValue canonical_type='void' type='void' kind='Builtin'/>
 </ObjCMethod>
 </ObjCInterface>
-<ObjCInterface name='qux' super='foobar'>
+<ObjCInterface name='qux' super='foobar' file='test.h'>
 <ConformsToProtocol name='NSObject'/>
 <ObjCMethod selector='testSomething:' static='true'>
 <Parameter name='arg' canonical_type='qux *' type='qux *' kind='ObjCObjectPointer'/>
