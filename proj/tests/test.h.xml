@@ -15,7 +15,15 @@
 <EnumConstant name='seven' value='7'/>
 <EnumConstant name='eight' value='8'/>
 </Enum>
+<ObjCProtocol name='anotherProtocol' file='test.h'>
+<ConformsToProtocol name='NSObject'/>
+<ObjCMethod selector='someOtherStaticFunction' static='true'>
+<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+</ObjCMethod>
+</ObjCProtocol>
 <ObjCProtocol name='testProtocol' file='test.h'>
+<ConformsToProtocol name='anotherProtocol'/>
+<ConformsToProtocol name='NSObject'/>
 <ObjCMethod selector='testStaticProtocolFunction:' static='true'>
 <Parameter name='array' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
 <ReturnValue canonical_type='void' type='void' kind='Builtin'/>
@@ -62,7 +70,7 @@
 </ObjCMethod>
 </ObjCInterface>
 <ObjCInterface name='qux' super='foobar' file='test.h'>
-<ConformsToProtocol name='NSObject'/>
+<ConformsToProtocol name='testProtocol'/>
 <ObjCMethod selector='testSomething:' static='true'>
 <Parameter name='arg' canonical_type='qux *' type='qux *' kind='ObjCObjectPointer'/>
 <ReturnValue canonical_type='void' type='void' kind='Builtin'/>

@@ -23,6 +23,12 @@ using namespace OCXML;
 using namespace OCXML::ElementTree;
 using namespace OCXML::ElementTree::ElementFactory;
 
+std::string getFilename(Decl* decl){
+    SourceLocation sl = decl->getLocation();
+    SourceManager& sm = decl->getASTContext().getSourceManager();
+    StringRef sr = sm.getFilename(sl);
+    return sr.str();
+}
 
 void processTypeAttributes(QualType qualType, Element* element){
     std::string canonical_type = qualType.getCanonicalType().getAsString();
@@ -138,6 +144,15 @@ void processImplementedProtocols(const ObjCInterfaceDecl* interface, Element* in
     }
 }
 
+void processImplementedProtocols(const ObjCProtocolDecl* protocol, Element* protocolElement){
+    ObjCInterfaceDecl::protocol_iterator iter = protocol->protocol_begin();
+    for(; iter!= protocol->protocol_end(); iter++){
+        std::string protocolName = (*iter)->getNameAsString();
+        Element* implementedProtocol = createConformsToProtocolElement(protocolName.c_str());
+        protocolElement->addChild(implementedProtocol);
+    }
+}
+
 Element* processEnumConstant(EnumConstantDecl* enumConstant){
     Element* result = createEnumConstantElement(enumConstant->getNameAsString().c_str());
     std::string value = enumConstant->getInitVal().toString(10).c_str();
@@ -156,13 +171,6 @@ void processEnumConstants(const EnumDecl* enumDecl, Element* enumElement){
 OCXML::ASTConsumers::InterfaceConsumer::InterfaceConsumer(Element* root): _root(root){}
 OCXML::ASTConsumers::ProtocolConsumer::ProtocolConsumer(Element* root): _root(root){}
 OCXML::ASTConsumers::EnumConsumer::EnumConsumer(Element* root): _root(root){}
-
-std::string getFilename(Decl* decl){
-    SourceLocation sl = decl->getLocation();
-    SourceManager& sm = decl->getASTContext().getSourceManager();
-    StringRef sr = sm.getFilename(sl);
-    return sr.str();
-}
 
 void OCXML::ASTConsumers::InterfaceConsumer::run(const MatchFinder::MatchResult &Result) {
     if (const ObjCInterfaceDecl *interface = Result.Nodes.getNodeAs<clang::ObjCInterfaceDecl>("interface")){
@@ -187,6 +195,7 @@ void OCXML::ASTConsumers::ProtocolConsumer::run(const MatchFinder::MatchResult &
         std::string file = getFilename((Decl*)protocol);
         protocolElement->addAttribute("file", file.c_str());
         _root->addChild(protocolElement);
+        processImplementedProtocols(protocol, protocolElement);
         processContainerMethods(protocol, protocolElement);
     }
 }

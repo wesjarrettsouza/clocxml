@@ -24,7 +24,12 @@ typedef enum tag2{
 	eight
 } enumtype2;
 
-@protocol testProtocol
+@protocol anotherProtocol <NSObject>
+	+(void) someOtherStaticFunction;
+
+@end
+
+@protocol testProtocol <anotherProtocol, NSObject>
 	
 	+(void)testStaticProtocolFunction:(NSArray*)array;
 	-(void)testMemberProtocolFunction:(NSDictionary*)dict;
@@ -44,7 +49,7 @@ typedef int (^handler)(const id uniquename[], int two, void* three, BOOL four);
 -(void)testProtoclInline:(void (^)(NSString* one))huh;
 @end
 
-@interface qux: foobar <NSObject> {
+@interface qux: foobar <testProtocol> {
 
 }
 
