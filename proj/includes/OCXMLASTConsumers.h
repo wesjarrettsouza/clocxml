@@ -9,9 +9,9 @@
 namespace OCXML{
 namespace ASTConsumers{
     
-    static const clang::ast_matchers::DeclarationMatcher InterfaceMatcher = clang::ast_matchers::objCInterface(clang::ast_matchers::hasValidFileLocation(), clang::ast_matchers::isFromMainFile(), clang::ast_matchers::isThisDeclarationADefinition()).bind("interface");
+    static const clang::ast_matchers::DeclarationMatcher InterfaceMatcher = clang::ast_matchers::objCInterface(clang::ast_matchers::hasValidFileLocation(), clang::ast_matchers::isFromMainFile(), clang::ast_matchers::isInterfaceDefined()).bind("interface");
     
-    static const clang::ast_matchers::DeclarationMatcher ProtocolMatcher  = clang::ast_matchers::objCProtocol(clang::ast_matchers::hasValidFileLocation(), clang::ast_matchers::isFromMainFile()).bind("protocol");
+    static const clang::ast_matchers::DeclarationMatcher ProtocolMatcher  = clang::ast_matchers::objCProtocol(clang::ast_matchers::hasValidFileLocation(), clang::ast_matchers::isFromMainFile(), clang::ast_matchers::isProtocolDefined()).bind("protocol");
     
     static const clang::ast_matchers::DeclarationMatcher EnumMatcher = clang::ast_matchers::enumDecl(clang::ast_matchers::hasValidFileLocation(), clang::ast_matchers::isFromMainFile()).bind("enum");
     

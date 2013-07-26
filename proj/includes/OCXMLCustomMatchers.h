@@ -38,7 +38,11 @@ namespace clang{
             }
         }
         
-        AST_MATCHER(ObjCInterfaceDecl, isThisDeclarationADefinition) {
+        AST_MATCHER(ObjCInterfaceDecl, isInterfaceDefined) {
+            return Node.isThisDeclarationADefinition();
+        }
+        
+        AST_MATCHER(ObjCProtocolDecl, isProtocolDefined) {
             return Node.isThisDeclarationADefinition();
         }
     }
