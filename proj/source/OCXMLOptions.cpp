@@ -11,7 +11,7 @@
 
 #define OPTARG "ftvac:o:"
 #define DEFAULT_OUTPUT "-"
-#define DEFAULT_COMPILER "clang -ObjC -I/usr/local/lib/clang/3.4/include "
+#define DEFAULT_COMPILER "clang "
 
 static struct option longOptions[] = {
     {"framework", no_argument,       NULL, 'f'},

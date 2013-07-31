@@ -50,7 +50,7 @@ CLANGLIBS  := \
 all: $(EXE)
 
 test: all
-	$(EXE) -c"-c" tests/test.h > tests/test.h.xml
+	$(EXE) -c"-x objective-c -arch armv7 -fobjc-arc -miphoneos-version-min=6.1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/4.2/include/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -c" tests/test.h > tests/test.h.xml
 
 $(EXE): $(BUILD_FOLDER) $(OBJECT_FOLDER) $(OBJECTS)
 	$(CXX) -o $(EXE) $(OBJECTS) $(CLANGLIBS) $(LLVMLDFLAGS)

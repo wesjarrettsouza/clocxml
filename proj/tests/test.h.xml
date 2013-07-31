@@ -35,8 +35,8 @@
 </ObjCProtocol>
 <ObjCInterface name='foobar' super='NSObject' file='test.h'>
 <ObjCMethod selector='testFunctionPointer:' static='true'>
-<Parameter name='foo' canonical_type='int (^)(const id *, int, void *, signed char)' type='handler' kind='BlockPointer'>
-<Parameter canonical_type='const id *' type='const id *' kind='Pointer'/>
+<Parameter name='foo' canonical_type='int (^)(const __unsafe_unretained id *, int, void *, signed char)' type='handler' kind='BlockPointer'>
+<Parameter canonical_type='const __unsafe_unretained id *' type='const __unsafe_unretained id *' kind='Pointer'/>
 <Parameter canonical_type='int' type='int' kind='Builtin'/>
 <Parameter canonical_type='void *' type='void *' kind='Pointer'/>
 <Parameter canonical_type='signed char' type='BOOL' kind='Builtin'/>
@@ -47,11 +47,11 @@
 <ObjCMethod selector='hello:something:another:'>
 <Parameter name='hi' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
 <Parameter name='qux' canonical_type='signed char' type='BOOL' kind='Builtin'/>
-<Parameter name='what' canonical_type='unsigned long' type='NSUInteger' kind='Builtin'/>
+<Parameter name='what' canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
 <ReturnValue canonical_type='void' type='void' kind='Builtin'/>
 </ObjCMethod>
 <ObjCMethod selector='testProtoclInline:'>
-<Parameter name='huh' canonical_type='void (^)(NSString *)' type='void (^)(NSString *)' kind='BlockPointer'>
+<Parameter name='huh' canonical_type='void (^)(NSString *)' type='void (^)(NSString *__strong)' kind='BlockPointer'>
 <Parameter canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
 <ReturnValue canonical_type='void' type='void' kind='Builtin'/>
 </Parameter>

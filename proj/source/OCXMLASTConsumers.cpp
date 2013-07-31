@@ -31,9 +31,10 @@ std::string getFilename(Decl* decl){
 }
 
 void processTypeAttributes(QualType qualType, Element* element){
-    std::string canonical_type = qualType.getCanonicalType().getAsString();
-    std::string type = qualType.getAsString();
-    std::string kind = qualType.getCanonicalType()->getTypeClassName();
+    QualType unqualifiedType = qualType.getUnqualifiedType();
+    std::string canonical_type = unqualifiedType.getCanonicalType().getAsString();
+    std::string type = unqualifiedType.getAsString();
+    std::string kind = unqualifiedType.getCanonicalType()->getTypeClassName();
     element->addAttribute("canonical_type", canonical_type.c_str());
     element->addAttribute("type", type.c_str());
     element->addAttribute("kind", kind.c_str());
