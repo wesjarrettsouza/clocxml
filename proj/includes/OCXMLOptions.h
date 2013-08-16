@@ -12,6 +12,7 @@
 #define OPTION_ALL_ATTRIBUTES   (1 << 3)
 #define OPTION_COMPILER         (1 << 4)
 #define OPTION_OUTPUT           (1 << 5)
+#define OPTION_NO_STRUCT        (1 << 6)
 
 namespace OCXML {
     

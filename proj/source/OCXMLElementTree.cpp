@@ -8,6 +8,7 @@
 
 #define XMLROOT "<?xml version='1.0'?>"
 #define TABULATE if(Options::getGlobalOptions()->isOptionSet(OPTION_TABULATE)){indent(depth);} else {}
+#define CONDITIONAL_FILTER_OUT_STRUCTS if(Options::getGlobalOptions()->isOptionSet(OPTION_NO_STRUCT) && strcmp(_name, "Struct") == 0) return;
 
 void replace_gtlt(std::string& string){
     std::string::size_type pos;
@@ -105,6 +106,7 @@ std::string Element::getAttributesXMLString() const {
 }
 
 void Element::printXML(int depth) const {
+    CONDITIONAL_FILTER_OUT_STRUCTS
     std::string attributesString = getAttributesXMLString();
     if (_children->empty()){
         TABULATE

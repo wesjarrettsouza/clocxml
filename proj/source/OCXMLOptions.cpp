@@ -9,7 +9,7 @@
 #include <libgen.h>
 #include <dirent.h>
 
-#define OPTARG "ftvac:o:"
+#define OPTARG "ftvasc:o:"
 #define DEFAULT_OUTPUT "-"
 #define DEFAULT_COMPILER "clang "
 
@@ -18,6 +18,7 @@ static struct option longOptions[] = {
     {"tabulate" , no_argument,       NULL, 't'},
     {"verbose"  , no_argument,       NULL, 'v'},
     {"all"      , no_argument,       NULL, 'a'},
+    {"s"        , no_argument,       NULL, 's'},
     {"c"        , required_argument, NULL, 'c'},
     {"o"        , required_argument, NULL, 'o'}
 };
@@ -56,6 +57,9 @@ Options::Options(int argc, char* const* argv){
             case 'c':
                 flags |= OPTION_COMPILER;
                 compilerOptions += optarg;
+                break;
+            case 's':
+                flags |= OPTION_NO_STRUCT;
                 break;
             case 'o':
                 flags |= OPTION_OUTPUT;
