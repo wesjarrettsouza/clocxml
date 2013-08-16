@@ -24,6 +24,18 @@ typedef enum tag2{
 	eight
 } enumtype2;
 
+typedef struct blahdiblah {
+	int one;
+} typedefed_struct;
+
+struct foostruct {
+	static int thing;
+	int thang;
+	double what;
+	static typedefed_struct huh;
+	NSObject *heyThere;
+};
+
 @protocol anotherProtocol <NSObject>
 	+(void) someOtherStaticFunction;
 

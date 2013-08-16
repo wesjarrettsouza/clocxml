@@ -169,9 +169,29 @@ void processEnumConstants(const EnumDecl* enumDecl, Element* enumElement){
     }
 }
 
+Element* processField(const DeclaratorDecl* declaratorDecl){
+    Element* fieldElement = createFieldElement(declaratorDecl->getNameAsString().c_str());
+    QualType qualType = declaratorDecl->getType();
+    processTypeAttributes(qualType, fieldElement);
+    std::string isStatic = (declaratorDecl->getKind() == Decl::Var ? "true" : "false");
+    fieldElement->addTrueFalseAttribute("static", isStatic.c_str());
+    return fieldElement;
+}
+
+void processStructFields(const RecordDecl* structDecl, Element* structElement){
+    RecordDecl::decl_iterator iter = structDecl->decls_begin();
+    for(; iter != structDecl->decls_end(); iter++){
+        Decl::Kind declKind = (*iter)->getKind();
+        if ((declKind != Decl::Var && declKind != Decl::Field)) continue;
+        Element *fieldElement = processField((DeclaratorDecl *)(*iter));
+        structElement->addChild(fieldElement);
+    }
+}
+
 OCXML::ASTConsumers::InterfaceConsumer::InterfaceConsumer(Element* root): _root(root){}
 OCXML::ASTConsumers::ProtocolConsumer::ProtocolConsumer(Element* root): _root(root){}
 OCXML::ASTConsumers::EnumConsumer::EnumConsumer(Element* root): _root(root){}
+OCXML::ASTConsumers::StructConsumer::StructConsumer(Element* root):_root(root){}
 
 void OCXML::ASTConsumers::InterfaceConsumer::run(const MatchFinder::MatchResult &Result) {
     if (const ObjCInterfaceDecl *interface = Result.Nodes.getNodeAs<clang::ObjCInterfaceDecl>("interface")){
@@ -208,5 +228,15 @@ void OCXML::ASTConsumers::EnumConsumer::run(const MatchFinder::MatchResult &Resu
         if (typedefName) enumElement->addAttribute("typedef", typedefName->getNameAsString().c_str());
         _root->addChild(enumElement);
         processEnumConstants(enumDecl, enumElement);
+    }
+}
+
+void OCXML::ASTConsumers::StructConsumer::run(const MatchFinder::MatchResult &Result) {
+    if (const RecordDecl *structDecl = Result.Nodes.getNodeAs<clang::RecordDecl>("struct")){
+        Element* structElement = createStructElement(structDecl->getNameAsString().c_str());
+        TypedefNameDecl *typedefName = structDecl->getCanonicalDecl()->getTypedefNameForAnonDecl();
+        if (typedefName) structElement->addAttribute("tyepdef", typedefName->getNameAsString().c_str());
+        _root->addChild(structElement);
+        processStructFields(structDecl, structElement);
     }
 }

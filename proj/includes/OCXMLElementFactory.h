@@ -23,6 +23,10 @@ namespace ElementFactory {
     Element* createEnumElement(const char* name);
     
     Element* createEnumConstantElement(const char* name);
+    
+    Element* createStructElement(const char* name);
+    
+    Element* createFieldElement(const char* name);
 }
 }
 }

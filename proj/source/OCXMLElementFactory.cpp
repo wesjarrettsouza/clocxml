@@ -51,6 +51,18 @@ namespace ElementFactory {
         result->addAttribute("name", name);
         return result;
     }
+    
+    Element* createStructElement(const char* name){
+        Element* result = new Element("Struct");
+        result->addAttribute("tag", name);
+        return result;
+    }
+    
+    Element* createFieldElement(const char* name){
+        Element* result = new Element("Field");
+        result->addAttribute("name", name);
+        return result;
+    }
 }
 }
 }

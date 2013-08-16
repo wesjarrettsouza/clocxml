@@ -14,6 +14,7 @@ namespace clang{
         
         const internal::VariadicDynCastAllOfMatcher<Decl, ObjCInterfaceDecl> objCInterface;
         const internal::VariadicDynCastAllOfMatcher<Decl, ObjCProtocolDecl> objCProtocol;
+        const internal::VariadicDynCastAllOfMatcher<Decl, TagDecl> tagDecl;
         
         AST_MATCHER(Decl, hasValidFileLocation){
             SourceLocation sl = Node.getLocation();
@@ -36,6 +37,10 @@ namespace clang{
             else {
                 return false;
             }
+        }
+        
+        AST_MATCHER(TagDecl, isStruct) {
+            return (Node.isStruct() ? true : false);
         }
         
         AST_MATCHER(ObjCInterfaceDecl, isInterfaceDefined) {

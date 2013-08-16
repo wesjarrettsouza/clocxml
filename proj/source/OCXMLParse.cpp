@@ -29,11 +29,14 @@ int main(int argc, char **argv) {
     
     EnumConsumer enumHandler(root);
     
+    StructConsumer structHanlder(root);
+    
     MatchFinder Finder;
     
     Finder.addMatcher(InterfaceMatcher, &interfaceHandler);
     Finder.addMatcher(ProtocolMatcher, &protocolHandler);
     Finder.addMatcher(EnumMatcher, &enumHandler);
+    Finder.addMatcher(StructMatcher, &structHanlder);
     
     Tool.run(newFrontendActionFactory(&Finder));
 
