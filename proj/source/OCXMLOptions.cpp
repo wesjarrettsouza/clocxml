@@ -1,3 +1,14 @@
+//
+//  OCXMLOptions.cpp
+//
+//  Created by Wes Souza.
+//  Copyright (c) 2013 Zynga. All rights reserved.
+//
+//  We implement a class to handle parsing and storing command line options and
+//  arguments. This class also handles generating the options to pass to Clang
+//  tooling - for instance, creating the parsePathList and compilationDatabase
+//  objects.
+//
 
 #include "OCXMLOptions.h"
 #include <iostream>
@@ -13,6 +24,7 @@
 #define DEFAULT_OUTPUT "-"
 #define DEFAULT_COMPILER "clang "
 
+//  This struct is used by the getopt_long call.
 static struct option longOptions[] = {
     {"framework", no_argument,       NULL, 'f'},
     {"tabulate" , no_argument,       NULL, 't'},
@@ -23,6 +35,7 @@ static struct option longOptions[] = {
     {"o"        , required_argument, NULL, 'o'}
 };
 
+//  TODO: Create the usage statmenet.
 void printUsage(){
     
 }
@@ -32,6 +45,8 @@ using namespace clang::tooling;
 
 Options* Options::globalOptions = NULL;
 
+//  The constructor simply takes the main method's arguments and
+//  handles the option parsing.
 Options::Options(int argc, char* const* argv){
     flags = 0;
     compilerOptions = "";
@@ -81,6 +96,8 @@ Options::~Options(){
     delete parsePathList;
 }
 
+//  These private methods initialize the options that are passed
+//  over to Clang tooling.
 void Options::initializeCompilationDatabase(){
     compilationDatabaseString = "[";
     for (std::vector<std::string>::iterator iter = parsePathList->begin(); iter != parsePathList->end(); iter++){
@@ -143,6 +160,7 @@ void Options::initializeParsePathList(int argc, char* const* argv){
     }
 }
 
+//  These functions return the objects needed by Clang tooling.
 CompilationDatabase &Options::getCompilations(){
     return *compilationDatabase;
 }
@@ -151,6 +169,8 @@ std::vector<std::string> &Options::getParsePathList(){
     return *parsePathList;
 }
 
+//  These static methods help manage the singleton instance of
+//  the options.
 void Options::setGlobalOptions(int argc, char *const *argv){
     if (Options::globalOptions == NULL){
         Options::globalOptions = new Options(argc, argv);
