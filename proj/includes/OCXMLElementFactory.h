@@ -1,3 +1,13 @@
+//
+//  OCXMLElementFactory.h
+//
+//  Created by Wes Souza.
+//  Copyright (c) 2013 Zynga. All rights reserved.
+//
+//  This is a utility file which wraps various XML element constructor
+//  calls. We use this file to standardize the creation of XML elements
+//  in the AST consumers.
+//
 
 #ifndef OCXMLElementFactory_h
 #define OCXMLElementFactory_h

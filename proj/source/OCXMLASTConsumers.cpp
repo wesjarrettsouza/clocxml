@@ -1,14 +1,17 @@
-// Declares clang::SyntaxOnlyAction.
-#include "clang/Frontend/FrontendActions.h"
-#include "clang/Tooling/CommonOptionsParser.h"
-#include "clang/Tooling/Tooling.h"
+//
+//  OCXMLASTConsumers.cpp
+//
+//  Created by Wes Souza.
+//  Copyright (c) 2013 Zynga. All rights reserved.
+//
+//  This file implements the various AST Consumers. Each consumer stores a reference
+//  to the root XML element so it can add children to it. The consumers extend from
+//  the Clang MatchCallback class and override the run method - which executes the
+//  callback.
+//
 
-// Declares llvm::cl::extrahelp.
-#include "llvm/Support/CommandLine.h"
 #include "clang/AST/CanonicalType.h"
-
 #include "clang/AST/DeclObjC.h"
-
 #include "OCXMLASTConsumers.h"
 #include "OCXMLElementTree.h"
 #include "OCXMLElementFactory.h"
@@ -23,14 +26,27 @@ using namespace OCXML;
 using namespace OCXML::ElementTree;
 using namespace OCXML::ElementTree::ElementFactory;
 
+
+//  This function is used for protocol and interface declarations and returns the
+//  file in which the declaration is located.
 std::string getFilename(Decl* decl){
+    
+    //  Use the SourceLocation of the Decl and the ASTContext's SourceManager to
+    //  retrieve the file name.
     SourceLocation sl = decl->getLocation();
     SourceManager& sm = decl->getASTContext().getSourceManager();
     StringRef sr = sm.getFilename(sl);
     return sr.str();
 }
 
+//  Every XML element that describes a type will have attributes attached by this
+//  function. The decl's QualType and XML element are passed in as arguments - this
+//  element is modified.
 void processTypeAttributes(QualType qualType, Element* element){
+    
+    //  Retreive the unqualified type to remove ARC storage qualifiers, though
+    //  this may be removed in the future. Add the canonical type, type and kind
+    //  attributes to the XML element.
     QualType unqualifiedType = qualType.getUnqualifiedType();
     std::string canonical_type = unqualifiedType.getCanonicalType().getAsString();
     std::string type = unqualifiedType.getAsString();
@@ -40,7 +56,12 @@ void processTypeAttributes(QualType qualType, Element* element){
     element->addAttribute("kind", kind.c_str());
 }
 
+//  If a handler encounters an ObjCObjectPointer, we need to list the protocols
+//  it conforms to (if any).
 void processObjectPointerProtocols(const Type* type, Element* element){
+    
+    //  Iterate over the qualifiers of an object pointer type, these always point
+    //  to the implemented protocols. Create an XML element for each protocol.
     const ObjCObjectPointerType *objcpt = type->getAs<ObjCObjectPointerType>();
     ObjCObjectPointerType::qual_iterator iter = objcpt->qual_begin();
     for (; iter != objcpt->qual_end(); iter++){
@@ -50,7 +71,11 @@ void processObjectPointerProtocols(const Type* type, Element* element){
     }
 }
 
+//  Block parameters aren't necessarily ParmVarDecl's, so we handle block parameters
+//  with this function.
 Element* processBlockParameter(QualType paramType){
+    
+    //  Ignore the names of block parameters, just add the type information.
     Element* result = createParameterElement("");
     processTypeAttributes(paramType, result);
     if (paramType->isObjCObjectPointerType())
@@ -58,6 +83,8 @@ Element* processBlockParameter(QualType paramType){
     return result;
 }
 
+//  We declare a separate function to handle block return values since methods retrieve
+//  this information differently.
 Element* processBlockReturnValue(const FunctionProtoType* block, Element *blockElement){
     Element* result = createReturnValueElement();
     processTypeAttributes(block->getResultType(), result);
@@ -66,6 +93,8 @@ Element* processBlockReturnValue(const FunctionProtoType* block, Element *blockE
     return result;
 }
 
+//  When a handler encounters a parameter, we create an XML element with the parameter's
+//  name and attach various type information.
 Element* processParameter(ParmVarDecl* param){
     std::string name = param->getNameAsString();
     Element* result = createParameterElement(name.c_str());
@@ -75,6 +104,8 @@ Element* processParameter(ParmVarDecl* param){
     return result;
 }
 
+//  When a handler encounters a return value, we create an XML element and attach various
+//  type information.
 Element* processMethodReturnValue(ObjCMethodDecl* method){
     Element* result = createReturnValueElement();
     processTypeAttributes(method->getResultType(), result);
@@ -83,6 +114,8 @@ Element* processMethodReturnValue(ObjCMethodDecl* method){
     return result;
 }
 
+//  When we encounter a block, we need to iterate over each of its parameters and process
+//  the parameter accordingly.
 void processBlockParameters(const FunctionProtoType* block, Element* blockElement){
     FunctionProtoType::arg_type_iterator iter = block->arg_type_begin();
     for (; iter != block->arg_type_end(); iter++){
@@ -97,6 +130,8 @@ void processBlockParameters(const FunctionProtoType* block, Element* blockElemen
     blockElement->addChild(returnValue);
 }
 
+//  When we encounter a method, we need to iterate over each of its parameters and process
+//  the parameter accordingly.
 void processParameters(ObjCMethodDecl* method, Element* methodElement){
     ObjCMethodDecl::param_iterator iter = method->param_begin();
     for (; iter != method->param_end(); iter++){
@@ -111,6 +146,8 @@ void processParameters(ObjCMethodDecl* method, Element* methodElement){
     methodElement->addChild(returnValue);
 }
 
+//  For each method XML element we create, we need to attach various attributes
+//  such as if it is a class method or if it is a variadic method.
 Element* processContainerMethod(ObjCMethodDecl* method){
     Element* methodElement = createObjCMethodElement(method->getSelector().getAsString().c_str());
     std::string isClassMethod = (method->isClassMethod() ? "true" : "false");
@@ -120,6 +157,8 @@ Element* processContainerMethod(ObjCMethodDecl* method){
     return methodElement;
 }
 
+//  For each container we handle (Interface, Protocol, Category), we need to iterate
+//  over each of the methods and process them accordingly.
 void processContainerMethods(const ObjCContainerDecl* container, Element* containerElement){
     ObjCContainerDecl::method_iterator iter = container->meth_begin();
     for (;iter != container->meth_end();iter++){
@@ -129,6 +168,8 @@ void processContainerMethods(const ObjCContainerDecl* container, Element* contai
     }
 }
 
+//  When we handle an interface match, we iterate over the visible categories' methods
+//  so we can get XML elements for all visible methods.
 void processCategories(const ObjCInterfaceDecl* interface, Element* interfaceElement){
     ObjCInterfaceDecl::visible_categories_iterator iter = interface->visible_categories_begin();
     for(;iter != interface->visible_categories_end(); iter++){
@@ -136,6 +177,8 @@ void processCategories(const ObjCInterfaceDecl* interface, Element* interfaceEle
     }
 }
 
+//  When we handle an interface match, we add which protocols it conforms to as child
+//  XML elements.
 void processImplementedProtocols(const ObjCInterfaceDecl* interface, Element* interfaceElement){
     ObjCInterfaceDecl::protocol_iterator iter = interface->protocol_begin();
     for(; iter!= interface->protocol_end(); iter++){
@@ -145,6 +188,8 @@ void processImplementedProtocols(const ObjCInterfaceDecl* interface, Element* in
     }
 }
 
+//  When we handle a protocol match, we add which protocols it conforms to as child
+//  XML elements.
 void processImplementedProtocols(const ObjCProtocolDecl* protocol, Element* protocolElement){
     ObjCInterfaceDecl::protocol_iterator iter = protocol->protocol_begin();
     for(; iter!= protocol->protocol_end(); iter++){
@@ -154,6 +199,7 @@ void processImplementedProtocols(const ObjCProtocolDecl* protocol, Element* prot
     }
 }
 
+//  We create an enum constant XML element by attaching name and value attributes.
 Element* processEnumConstant(EnumConstantDecl* enumConstant){
     Element* result = createEnumConstantElement(enumConstant->getNameAsString().c_str());
     std::string value = enumConstant->getInitVal().toString(10).c_str();
@@ -161,6 +207,8 @@ Element* processEnumConstant(EnumConstantDecl* enumConstant){
     return result;
 }
 
+//  For each enum we encounter, we need to add its constant declarations as child XML
+//  elements.
 void processEnumConstants(const EnumDecl* enumDecl, Element* enumElement){
     EnumDecl::enumerator_iterator iter = enumDecl->enumerator_begin();
     for(; iter != enumDecl->enumerator_end(); iter++){
@@ -169,6 +217,9 @@ void processEnumConstants(const EnumDecl* enumDecl, Element* enumElement){
     }
 }
 
+//  When we create a field XML element, we need to determine if its declared as a class
+//  field. This is only available in C++, and it seems that clang currently creates
+//  these fields as VarDecls instead of FieldDecls.
 Element* processField(const DeclaratorDecl* declaratorDecl){
     Element* fieldElement = createFieldElement(declaratorDecl->getNameAsString().c_str());
     QualType qualType = declaratorDecl->getType();
@@ -178,6 +229,9 @@ Element* processField(const DeclaratorDecl* declaratorDecl){
     return fieldElement;
 }
 
+//  When we handle a struct match, we treat it as an arbitrary DeclContext and iterate
+//  over its declarations. If an iterated decl is a Var or Field decl, we add it as a
+//  child XML element.
 void processStructFields(const RecordDecl* structDecl, Element* structElement){
     RecordDecl::decl_iterator iter = structDecl->decls_begin();
     for(; iter != structDecl->decls_end(); iter++){
@@ -188,11 +242,20 @@ void processStructFields(const RecordDecl* structDecl, Element* structElement){
     }
 }
 
+//  The constructors for each of the AST consumers simply initializes the reference to the
+//  root XML element.
 OCXML::ASTConsumers::InterfaceConsumer::InterfaceConsumer(Element* root): _root(root){}
 OCXML::ASTConsumers::ProtocolConsumer::ProtocolConsumer(Element* root): _root(root){}
 OCXML::ASTConsumers::EnumConsumer::EnumConsumer(Element* root): _root(root){}
 OCXML::ASTConsumers::StructConsumer::StructConsumer(Element* root):_root(root){}
 
+
+//  The InterfaceConsumer class handles an AST Match by first creating an "ObjCInterface"
+//  XML Element and adding a "ConformsToProtocol" for each protocol that the interface
+//  conforms to. It then iterates over each class and instance method creating XML elements
+//  for the method and the method's parameters and return values. If a parameter or return
+//  value is a block type it will recurse accordingly. Every visible category is processed
+//  in the same manner.
 void OCXML::ASTConsumers::InterfaceConsumer::run(const MatchFinder::MatchResult &Result) {
     if (const ObjCInterfaceDecl *interface = Result.Nodes.getNodeAs<clang::ObjCInterfaceDecl>("interface")){
         
@@ -209,6 +272,12 @@ void OCXML::ASTConsumers::InterfaceConsumer::run(const MatchFinder::MatchResult 
     }
 }
 
+
+//  The ProtocolConsumer class handles an AST Match by first creating an "ObjCProtocol"
+//  XML Element and adding a "ConformsToProtocol" for each protocol that the protocol
+//  conforms to. It then iterates over each class and instance method creating XML elements
+//  for the method and the method's parameters and return values. If a parameter or return
+//  value is a block type it will recurse accordingly.
 void OCXML::ASTConsumers::ProtocolConsumer::run(const MatchFinder::MatchResult &Result) {
     if (const ObjCProtocolDecl *protocol = Result.Nodes.getNodeAs<clang::ObjCProtocolDecl>("protocol")){
         const ObjCProtocolDecl *canonical = protocol->getCanonicalDecl();
@@ -221,6 +290,11 @@ void OCXML::ASTConsumers::ProtocolConsumer::run(const MatchFinder::MatchResult &
     }
 }
 
+
+//  The EnumConsumer class handles an AST Match by creating an "Enum" XML element. If the
+//  enum declaration is an anonymous typedefed declaration, the typedef is added as an
+//  attribute - otherwise, the tag name is added as an attribute. Each enum constant is
+//  added as a child XML Element with name and value attribiutes.
 void OCXML::ASTConsumers::EnumConsumer::run(const MatchFinder::MatchResult &Result) {
     if (const EnumDecl *enumDecl = Result.Nodes.getNodeAs<clang::EnumDecl>("enum")){
         Element* enumElement = createEnumElement(enumDecl->getNameAsString().c_str());
@@ -231,6 +305,10 @@ void OCXML::ASTConsumers::EnumConsumer::run(const MatchFinder::MatchResult &Resu
     }
 }
 
+
+//  The StructConsumer class handles an AST Match by creating a "Struct" XML element.
+//  A "Field" XML element is created for each of the struct's fields. Standard type
+//  attributes are added to each of the field's elements.
 void OCXML::ASTConsumers::StructConsumer::run(const MatchFinder::MatchResult &Result) {
     if (const RecordDecl *structDecl = Result.Nodes.getNodeAs<clang::RecordDecl>("struct")){
         Element* structElement = createStructElement(structDecl->getNameAsString().c_str());
