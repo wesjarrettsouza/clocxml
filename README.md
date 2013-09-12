@@ -63,7 +63,7 @@ Now all we need to do is call clocxml with the correct flags:
 
 ```
 -t: Tabulates the XML output
--c: Passes the corresponding argument to clang`
+-c: Passes the following argument string to clang
 ```
 
 So to generate metadata:
