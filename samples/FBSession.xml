@@ -1,0 +1,240 @@
+<?xml version='1.0'?>
+<Metadata>
+	<Enum typedef='FBSessionState'>
+		<EnumConstant name='FBSessionStateCreated' value='0'/>
+		<EnumConstant name='FBSessionStateCreatedTokenLoaded' value='1'/>
+		<EnumConstant name='FBSessionStateCreatedOpening' value='2'/>
+		<EnumConstant name='FBSessionStateOpen' value='513'/>
+		<EnumConstant name='FBSessionStateOpenTokenExtended' value='514'/>
+		<EnumConstant name='FBSessionStateClosedLoginFailed' value='257'/>
+		<EnumConstant name='FBSessionStateClosed' value='258'/>
+	</Enum>
+	<Enum typedef='FBSessionLoginBehavior'>
+		<EnumConstant name='FBSessionLoginBehaviorWithFallbackToWebView' value='0'/>
+		<EnumConstant name='FBSessionLoginBehaviorWithNoFallbackToWebView' value='1'/>
+		<EnumConstant name='FBSessionLoginBehaviorForcingWebView' value='2'/>
+		<EnumConstant name='FBSessionLoginBehaviorUseSystemAccountIfPresent' value='3'/>
+	</Enum>
+	<Enum typedef='FBSessionDefaultAudience'>
+		<EnumConstant name='FBSessionDefaultAudienceNone' value='0'/>
+		<EnumConstant name='FBSessionDefaultAudienceOnlyMe' value='10'/>
+		<EnumConstant name='FBSessionDefaultAudienceFriends' value='20'/>
+		<EnumConstant name='FBSessionDefaultAudienceEveryone' value='30'/>
+	</Enum>
+	<Enum typedef='FBSessionLoginType'>
+		<EnumConstant name='FBSessionLoginTypeNone' value='0'/>
+		<EnumConstant name='FBSessionLoginTypeSystemAccount' value='1'/>
+		<EnumConstant name='FBSessionLoginTypeFacebookApplication' value='2'/>
+		<EnumConstant name='FBSessionLoginTypeFacebookViaSafari' value='3'/>
+		<EnumConstant name='FBSessionLoginTypeWebView' value='4'/>
+		<EnumConstant name='FBSessionLoginTypeTestUser' value='5'/>
+	</Enum>
+	<ObjCInterface name='FBSession' super='NSObject' file='FBSession.h'>
+		<ObjCMethod selector='init'>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithPermissions:'>
+			<Parameter name='permissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithAppID:permissions:urlSchemeSuffix:tokenCacheStrategy:'>
+			<Parameter name='appID' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='permissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='urlSchemeSuffix' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='tokenCachingStrategy' canonical_type='FBSessionTokenCachingStrategy *' type='FBSessionTokenCachingStrategy *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithAppID:permissions:defaultAudience:urlSchemeSuffix:tokenCacheStrategy:'>
+			<Parameter name='appID' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='permissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='defaultAudience' canonical_type='FBSessionDefaultAudience' type='FBSessionDefaultAudience' kind='Enum'/>
+			<Parameter name='urlSchemeSuffix' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='tokenCachingStrategy' canonical_type='FBSessionTokenCachingStrategy *' type='FBSessionTokenCachingStrategy *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='openWithCompletionHandler:'>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, FBSessionState, NSError *)' type='FBSessionStateHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='FBSessionState' type='FBSessionState' kind='Enum'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='openWithBehavior:completionHandler:'>
+			<Parameter name='behavior' canonical_type='FBSessionLoginBehavior' type='FBSessionLoginBehavior' kind='Enum'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, FBSessionState, NSError *)' type='FBSessionStateHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='FBSessionState' type='FBSessionState' kind='Enum'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='openFromAccessTokenData:completionHandler:'>
+			<Parameter name='accessTokenData' canonical_type='FBAccessTokenData *' type='FBAccessTokenData *' kind='ObjCObjectPointer'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, FBSessionState, NSError *)' type='FBSessionStateHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='FBSessionState' type='FBSessionState' kind='Enum'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='close'>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='closeAndClearTokenInformation'>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='reauthorizeWithPermissions:behavior:completionHandler:'>
+			<Parameter name='permissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='behavior' canonical_type='FBSessionLoginBehavior' type='FBSessionLoginBehavior' kind='Enum'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, NSError *)' type='FBSessionReauthorizeResultHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='reauthorizeWithReadPermissions:completionHandler:'>
+			<Parameter name='readPermissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, NSError *)' type='FBSessionReauthorizeResultHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='reauthorizeWithPublishPermissions:defaultAudience:completionHandler:'>
+			<Parameter name='writePermissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='defaultAudience' canonical_type='FBSessionDefaultAudience' type='FBSessionDefaultAudience' kind='Enum'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, NSError *)' type='FBSessionReauthorizeResultHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestNewReadPermissions:completionHandler:'>
+			<Parameter name='readPermissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, NSError *)' type='FBSessionRequestPermissionResultHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestNewPublishPermissions:defaultAudience:completionHandler:'>
+			<Parameter name='writePermissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='defaultAudience' canonical_type='FBSessionDefaultAudience' type='FBSessionDefaultAudience' kind='Enum'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, NSError *)' type='FBSessionRequestPermissionResultHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='handleOpenURL:'>
+			<Parameter name='url' canonical_type='NSURL *' type='NSURL *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='handleDidBecomeActive'>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='openActiveSessionWithAllowLoginUI:' static='true'>
+			<Parameter name='allowLoginUI' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='openActiveSessionWithPermissions:allowLoginUI:completionHandler:' static='true'>
+			<Parameter name='permissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='allowLoginUI' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, FBSessionState, NSError *)' type='FBSessionStateHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='FBSessionState' type='FBSessionState' kind='Enum'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='openActiveSessionWithReadPermissions:allowLoginUI:completionHandler:' static='true'>
+			<Parameter name='readPermissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='allowLoginUI' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, FBSessionState, NSError *)' type='FBSessionStateHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='FBSessionState' type='FBSessionState' kind='Enum'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='openActiveSessionWithPublishPermissions:defaultAudience:allowLoginUI:completionHandler:' static='true'>
+			<Parameter name='publishPermissions' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='defaultAudience' canonical_type='FBSessionDefaultAudience' type='FBSessionDefaultAudience' kind='Enum'/>
+			<Parameter name='allowLoginUI' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<Parameter name='handler' canonical_type='void (^)(FBSession *, FBSessionState, NSError *)' type='FBSessionStateHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='FBSessionState' type='FBSessionState' kind='Enum'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='activeSession' static='true'>
+			<ReturnValue canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setActiveSession:' static='true'>
+			<Parameter name='session' canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setDefaultAppID:' static='true'>
+			<Parameter name='appID' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='defaultAppID' static='true'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setDefaultUrlSchemeSuffix:' static='true'>
+			<Parameter name='urlSchemeSuffix' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='defaultUrlSchemeSuffix' static='true'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='renewSystemCredentials:' static='true'>
+			<Parameter name='handler' canonical_type='void (^)(enum ACAccountCredentialRenewResult, NSError *)' type='FBSessionRenewSystemCredentialsHandler' kind='BlockPointer'>
+				<Parameter canonical_type='enum ACAccountCredentialRenewResult' type='ACAccountCredentialRenewResult' kind='Enum'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='isOpen'>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='state'>
+			<ReturnValue canonical_type='FBSessionState' type='FBSessionState' kind='Enum'/>
+		</ObjCMethod>
+		<ObjCMethod selector='appID'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='urlSchemeSuffix'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='accessToken'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='expirationDate'>
+			<ReturnValue canonical_type='NSDate *' type='NSDate *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='permissions'>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='loginType'>
+			<ReturnValue canonical_type='FBSessionLoginType' type='FBSessionLoginType' kind='Enum'/>
+		</ObjCMethod>
+		<ObjCMethod selector='accessTokenData'>
+			<ReturnValue canonical_type='FBAccessTokenData *' type='FBAccessTokenData *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+	</ObjCInterface>
+</Metadata>
