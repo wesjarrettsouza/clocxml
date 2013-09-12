@@ -1,0 +1,231 @@
+<?xml version='1.0'?>
+<Metadata>
+	<ObjCInterface name='NSDictionary' super='NSObject' file='NSDictionary.h'>
+		<ConformsToProtocol name='NSCopying'/>
+		<ConformsToProtocol name='NSMutableCopying'/>
+		<ConformsToProtocol name='NSCoding'/>
+		<ConformsToProtocol name='NSFastEnumeration'/>
+		<ObjCMethod selector='dictionary' static='true'>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='dictionaryWithObject:forKey:' static='true'>
+			<Parameter name='object' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='key' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='dictionaryWithObjects:forKeys:count:' static='true'>
+			<Parameter name='objects' canonical_type='const id *' type='const id *' kind='Pointer'/>
+			<Parameter name='keys' canonical_type='const id *' type='const id *' kind='Pointer'/>
+			<Parameter name='cnt' canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='dictionaryWithObjectsAndKeys:' static='true' variadic='true'>
+			<Parameter name='firstObject' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='dictionaryWithDictionary:' static='true'>
+			<Parameter name='dict' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='dictionaryWithObjects:forKeys:' static='true'>
+			<Parameter name='objects' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='keys' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithObjects:forKeys:count:'>
+			<Parameter name='objects' canonical_type='const id *' type='const id *' kind='Pointer'/>
+			<Parameter name='keys' canonical_type='const id *' type='const id *' kind='Pointer'/>
+			<Parameter name='cnt' canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithObjectsAndKeys:' variadic='true'>
+			<Parameter name='firstObject' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithDictionary:'>
+			<Parameter name='otherDictionary' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithDictionary:copyItems:'>
+			<Parameter name='otherDictionary' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<Parameter name='flag' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithObjects:forKeys:'>
+			<Parameter name='objects' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='keys' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='dictionaryWithContentsOfFile:' static='true'>
+			<Parameter name='path' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='dictionaryWithContentsOfURL:' static='true'>
+			<Parameter name='url' canonical_type='NSURL *' type='NSURL *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithContentsOfFile:'>
+			<Parameter name='path' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithContentsOfURL:'>
+			<Parameter name='url' canonical_type='NSURL *' type='NSURL *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='allKeys'>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='allKeysForObject:'>
+			<Parameter name='anObject' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='allValues'>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='description'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='descriptionInStringsFileFormat'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='descriptionWithLocale:'>
+			<Parameter name='locale' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='descriptionWithLocale:indent:'>
+			<Parameter name='locale' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='level' canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='isEqualToDictionary:'>
+			<Parameter name='otherDictionary' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='objectEnumerator'>
+			<ReturnValue canonical_type='NSEnumerator *' type='NSEnumerator *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='objectsForKeys:notFoundMarker:'>
+			<Parameter name='keys' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<Parameter name='marker' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='writeToFile:atomically:'>
+			<Parameter name='path' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='useAuxiliaryFile' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='writeToURL:atomically:'>
+			<Parameter name='url' canonical_type='NSURL *' type='NSURL *' kind='ObjCObjectPointer'/>
+			<Parameter name='atomically' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='keysSortedByValueUsingSelector:'>
+			<Parameter name='comparator' canonical_type='SEL *' type='SEL' kind='Pointer'/>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='getObjects:andKeys:'>
+			<Parameter name='objects' canonical_type='id *' type='id *' kind='Pointer'/>
+			<Parameter name='keys' canonical_type='id *' type='id *' kind='Pointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='enumerateKeysAndObjectsUsingBlock:'>
+			<Parameter name='block' canonical_type='void (^)(id, id, signed char *)' type='void (^)(id, id, BOOL *)' kind='BlockPointer'>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='signed char *' type='BOOL *' kind='Pointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='enumerateKeysAndObjectsWithOptions:usingBlock:'>
+			<Parameter name='opts' canonical_type='unsigned int' type='NSEnumerationOptions' kind='Builtin'/>
+			<Parameter name='block' canonical_type='void (^)(id, id, signed char *)' type='void (^)(id, id, BOOL *)' kind='BlockPointer'>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='signed char *' type='BOOL *' kind='Pointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='keysSortedByValueUsingComparator:'>
+			<Parameter name='cmptr' canonical_type='enum NSComparisonResult (^)(id, id)' type='NSComparator' kind='BlockPointer'>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='enum NSComparisonResult' type='NSComparisonResult' kind='Enum'/>
+			</Parameter>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='keysSortedByValueWithOptions:usingComparator:'>
+			<Parameter name='opts' canonical_type='unsigned int' type='NSSortOptions' kind='Builtin'/>
+			<Parameter name='cmptr' canonical_type='enum NSComparisonResult (^)(id, id)' type='NSComparator' kind='BlockPointer'>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='enum NSComparisonResult' type='NSComparisonResult' kind='Enum'/>
+			</Parameter>
+			<ReturnValue canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='keysOfEntriesPassingTest:'>
+			<Parameter name='predicate' canonical_type='signed char (^)(id, id, signed char *)' type='BOOL (^)(id, id, BOOL *)' kind='BlockPointer'>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='signed char *' type='BOOL *' kind='Pointer'/>
+				<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='NSSet *' type='NSSet *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='keysOfEntriesWithOptions:passingTest:'>
+			<Parameter name='opts' canonical_type='unsigned int' type='NSEnumerationOptions' kind='Builtin'/>
+			<Parameter name='predicate' canonical_type='signed char (^)(id, id, signed char *)' type='BOOL (^)(id, id, BOOL *)' kind='BlockPointer'>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='signed char *' type='BOOL *' kind='Pointer'/>
+				<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='NSSet *' type='NSSet *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='count'>
+			<ReturnValue canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='objectForKey:'>
+			<Parameter name='aKey' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='keyEnumerator'>
+			<ReturnValue canonical_type='NSEnumerator *' type='NSEnumerator *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+	</ObjCInterface>
+	<ObjCInterface name='NSMutableDictionary' super='NSDictionary' file='NSDictionary.h'>
+		<ObjCMethod selector='dictionaryWithCapacity:' static='true'>
+			<Parameter name='numItems' canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithCapacity:'>
+			<Parameter name='numItems' canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='addEntriesFromDictionary:'>
+			<Parameter name='otherDictionary' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='removeAllObjects'>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='removeObjectsForKeys:'>
+			<Parameter name='keyArray' canonical_type='NSArray *' type='NSArray *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setDictionary:'>
+			<Parameter name='otherDictionary' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='removeObjectForKey:'>
+			<Parameter name='aKey' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setObject:forKey:'>
+			<Parameter name='anObject' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='aKey' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+	</ObjCInterface>
+</Metadata>

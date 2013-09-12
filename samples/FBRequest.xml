@@ -1,0 +1,174 @@
+<?xml version='1.0'?>
+<Metadata>
+	<ObjCInterface name='FBRequest' super='NSObject' file='FBRequest.h'>
+		<ObjCMethod selector='init'>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithSession:graphPath:'>
+			<Parameter name='session' canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+			<Parameter name='graphPath' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithSession:graphPath:parameters:HTTPMethod:'>
+			<Parameter name='session' canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+			<Parameter name='graphPath' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='parameters' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<Parameter name='HTTPMethod' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initForPostWithSession:graphPath:graphObject:'>
+			<Parameter name='session' canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+			<Parameter name='graphPath' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='graphObject' canonical_type='id&lt;FBGraphObject&gt;' type='id&lt;FBGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</Parameter>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='initWithSession:restMethod:parameters:HTTPMethod:'>
+			<Parameter name='session' canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+			<Parameter name='restMethod' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='parameters' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<Parameter name='HTTPMethod' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='startWithCompletionHandler:'>
+			<Parameter name='handler' canonical_type='void (^)(FBRequestConnection *, id, NSError *)' type='FBRequestHandler' kind='BlockPointer'>
+				<Parameter canonical_type='FBRequestConnection *' type='FBRequestConnection *' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+				<Parameter canonical_type='NSError *' type='NSError *' kind='ObjCObjectPointer'/>
+				<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+			</Parameter>
+			<ReturnValue canonical_type='FBRequestConnection *' type='FBRequestConnection *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForMe' static='true'>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForMyFriends' static='true'>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForUploadPhoto:' static='true'>
+			<Parameter name='photo' canonical_type='UIImage *' type='UIImage *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForPostStatusUpdate:' static='true'>
+			<Parameter name='message' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForPostStatusUpdate:place:tags:' static='true'>
+			<Parameter name='message' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='place' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='tags' canonical_type='id&lt;NSFastEnumeration&gt;' type='id&lt;NSFastEnumeration&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='NSFastEnumeration'/>
+			</Parameter>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForPlacesSearchAtCoordinate:radiusInMeters:resultsLimit:searchText:' static='true'>
+			<Parameter name='coordinate' canonical_type='CLLocationCoordinate2D' type='CLLocationCoordinate2D' kind='Record'/>
+			<Parameter name='radius' canonical_type='int' type='NSInteger' kind='Builtin'/>
+			<Parameter name='limit' canonical_type='int' type='NSInteger' kind='Builtin'/>
+			<Parameter name='searchText' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForCustomAudienceThirdPartyID:' static='true'>
+			<Parameter name='session' canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForGraphPath:' static='true'>
+			<Parameter name='graphPath' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForDeleteObject:' static='true'>
+			<Parameter name='object' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForPostWithGraphPath:graphObject:' static='true'>
+			<Parameter name='graphPath' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='graphObject' canonical_type='id&lt;FBGraphObject&gt;' type='id&lt;FBGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</Parameter>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestWithGraphPath:parameters:HTTPMethod:' static='true'>
+			<Parameter name='graphPath' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='parameters' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<Parameter name='HTTPMethod' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForPostOpenGraphObject:' static='true'>
+			<Parameter name='object' canonical_type='id&lt;FBOpenGraphObject&gt;' type='id&lt;FBOpenGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBOpenGraphObject'/>
+			</Parameter>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForPostOpenGraphObjectWithType:title:image:url:description:objectProperties:' static='true'>
+			<Parameter name='type' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='title' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='image' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='url' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='description' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='objectProperties' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForUpdateOpenGraphObject:' static='true'>
+			<Parameter name='object' canonical_type='id&lt;FBOpenGraphObject&gt;' type='id&lt;FBOpenGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBOpenGraphObject'/>
+			</Parameter>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForUpdateOpenGraphObjectWithId:title:image:url:description:objectProperties:' static='true'>
+			<Parameter name='objectId' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='title' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='image' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='url' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='description' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='objectProperties' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='requestForUploadStagingResourceWithImage:' static='true'>
+			<Parameter name='image' canonical_type='UIImage *' type='UIImage *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='FBRequest *' type='FBRequest *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='parameters'>
+			<ReturnValue canonical_type='NSMutableDictionary *' type='NSMutableDictionary *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='session'>
+			<ReturnValue canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setSession:'>
+			<Parameter name='session' canonical_type='FBSession *' type='FBSession *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='graphPath'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setGraphPath:'>
+			<Parameter name='graphPath' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='restMethod'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setRestMethod:'>
+			<Parameter name='restMethod' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='HTTPMethod'>
+			<ReturnValue canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setHTTPMethod:'>
+			<Parameter name='HTTPMethod' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='graphObject'>
+			<ReturnValue canonical_type='id&lt;FBGraphObject&gt;' type='id&lt;FBGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</ReturnValue>
+		</ObjCMethod>
+		<ObjCMethod selector='setGraphObject:'>
+			<Parameter name='graphObject' canonical_type='id&lt;FBGraphObject&gt;' type='id&lt;FBGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</Parameter>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+	</ObjCInterface>
+</Metadata>
