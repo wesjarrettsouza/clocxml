@@ -3,7 +3,7 @@ clocxml
 
 Description
 ---
-Clocxml is a [Clang Tool](http:/clang.llvm.org/docs/LibTooling.html) that produces an XML representation of Objective-C types. Accurate and thorough metadata for Objective-C interface, category, and protocol declarations is output with natural XML element names and formatting. You can use this tool to quickly list out all instance and class methods that an interface declares, the type, kind and name of each parameter, all protocols that an interface conforms to and other useful information. Clocxml has an easy-to-use command line front-end and outputs XML which makes for quick integration with applications that need Objective-C metadata. 
+Clocxml is a [Clang Tool](http://clang.llvm.org/docs/LibTooling.html) that produces an XML representation of Objective-C types. Accurate and thorough metadata for Objective-C interface, category, and protocol declarations is output with natural XML element names and formatting. You can use this tool to quickly list out all instance and class methods that an interface declares, the type, kind and name of each parameter, all protocols that an interface conforms to and other useful information. Clocxml has an easy-to-use command line front-end and outputs XML which makes for quick integration with applications that need Objective-C metadata. 
 
 Here's a snipet of the kind of information you'll get:
 
@@ -35,7 +35,7 @@ Here's a snipet of the kind of information you'll get:
 
 Motivation
 ---
-After using the Mac OS [gen_bridge_metadata](https:/developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/gen_bridge_metadata.1.html) and spending hours trying to alter the Ruby scripts to output information intuitively, it became apparent that I needed a transparent and extensibile solution to retreiving Objective-C metadata. While gen_bridge_metadata uses native C extensions for Ruby to interface with libclang and uses Ruby for the front-end, clocxml uses only C++ - providing direct feedback from Clang when parsing files and removing an unnecessary layer of overhead. The source code for clocxml is arguably much more organized and terse compared to [gen_bridge_metadata](https:/github.com/mobiruby/BridgeSupport) allowing for easy development and contributions.
+After using the Mac OS [gen_bridge_metadata](http://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/gen_bridge_metadata.1.html) and spending hours trying to alter the Ruby scripts to output information intuitively, it became apparent that I needed a transparent and extensibile solution to retreiving Objective-C metadata. While gen_bridge_metadata uses native C extensions for Ruby to interface with libclang and uses Ruby for the front-end, clocxml uses only C++ - providing direct feedback from Clang when parsing files and removing an unnecessary layer of overhead. The source code for clocxml is arguably much more organized and terse compared to [gen_bridge_metadata](http://github.com/mobiruby/BridgeSupport) allowing for easy development and contributions.
 
 Samples
 ---
