@@ -7,8 +7,8 @@ Clocxml is a [Clang Tool](http:/clang.llvm.org/docs/LibTooling.html) that produc
 
 Here's a snipet of the kind of information you'll get:
 
-<div style="height:150px; width:100px; overflow:scroll">
-<pre><code>
+<div style="height:150px; overflow:scroll">
+```
 &lt;?xml version='1.0'?&gt;
 &lt;Metadata&gt;
     &lt;Enum typedef='FBSessionState'&gt;
@@ -249,7 +249,7 @@ Here's a snipet of the kind of information you'll get:
         &lt;/ObjCMethod&gt;
     &lt;/ObjCInterface&gt;
 &lt;/Metadata&gt;
-</code></pre>
+```
 </div>
 
 
@@ -262,6 +262,7 @@ Samples
 Want to generate code which interfaces with NSDictionary methods? Need metadata? Here's how to do that with clocxml (you can find copies of these files under the [samples](samples) directory.
 
 **Step 1: Determine the clang options necessary to compile NSDictionary.h**
+
 Clang needs to know how to build the AST for the file we're parsing, so we need to pass this to clocxml.
 
 I can successfully compile NSDictionary.h with the following flags:
@@ -272,6 +273,7 @@ We'll need to pass these same compiler flags into clocxml to get the analagous m
 `clang_flags="-ObjC -resource-dir /usr/local/ -arch armv7 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/4.2/include/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -c"`
 
 **Step 2: Run clocxml**
+
 Now all we need to do is call clocxml with the correct flags:
 
 `-t: Tabulates the XML output`
@@ -281,8 +283,8 @@ So to generate metadata:
 `clocxml -t -c"$clang_flags" NSDictionary.h`
 
 Here's the output:
-<div style="height:150px; width:100px; overflow:scroll">
-<pre><code>
+<div style="height:150px; overflow:scroll">
+```
 &lt;?xml version='1.0'?&gt;
 &lt;Metadata&gt;
     &lt;ObjCInterface name='NSDictionary' super='NSObject' file='NSDictionary.h'&gt;
@@ -514,6 +516,5 @@ Here's the output:
         &lt;/ObjCMethod&gt;
     &lt;/ObjCInterface&gt;
 &lt;/Metadata&gt;
-</code></pre>
+```
 </div>
-
