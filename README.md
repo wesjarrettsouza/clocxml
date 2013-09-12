@@ -47,20 +47,29 @@ Clang needs to know how to build the AST for the file we're parsing, so we need 
 
 I can successfully compile NSDictionary.h with the following flags:
 
+```
 > clang -ObjC -resource-dir /usr/local/ -arch armv7 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/4.2/include/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -c tests/NSDictionary.h
+```
 
 We'll need to pass these same compiler flags into clocxml to get the analagous metadata, so let's define a shell variable to make this easier.
 
+```
 > clang_flags="-ObjC -resource-dir /usr/local/ -arch armv7 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/4.2/include/ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -c"
+```
 
 **Step 2: Run clocxml**
 
 Now all we need to do is call clocxml with the correct flags:
 
+```
 > -t: Tabulates the XML output
 > -c: Passes the corresponding argument to clang`
+```
 
 So to generate metadata:
+
+```
 > clocxml -t -c"$clang_flags" NSDictionary.h
+```
 
 You can find the output [here](samples/NSDictionary.xml).
