@@ -69,7 +69,7 @@ Now all we need to do is call clocxml with the correct flags:
 So to generate metadata:
 
 ```
-4 clocxml -t -c"$clang_flags" NSDictionary.h
+$ clocxml -t -c"$clang_flags" NSDictionary.h
 ```
 
 You can find the output [here](samples/NSDictionary.xml).
