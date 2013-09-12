@@ -7,8 +7,7 @@ Clocxml is a [Clang Tool](http:/clang.llvm.org/docs/LibTooling.html) that produc
 
 Here's a snipet of the kind of information you'll get:
 
-<div style="height:150px; overflow:scroll">
-```
+<pre><code style="height:150px; overflow:scroll">
 &lt;?xml version='1.0'?&gt;
 &lt;Metadata&gt;
     &lt;Enum typedef='FBSessionState'&gt;
@@ -249,8 +248,7 @@ Here's a snipet of the kind of information you'll get:
         &lt;/ObjCMethod&gt;
     &lt;/ObjCInterface&gt;
 &lt;/Metadata&gt;
-```
-</div>
+</code></pre>
 
 
 Motivation
@@ -283,7 +281,6 @@ So to generate metadata:
 `clocxml -t -c"$clang_flags" NSDictionary.h`
 
 Here's the output:
-<div style="height:150px; overflow:scroll">
 ```
 &lt;?xml version='1.0'?&gt;
 &lt;Metadata&gt;
