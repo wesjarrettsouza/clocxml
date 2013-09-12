@@ -1,0 +1,75 @@
+<?xml version='1.0'?>
+<Metadata>
+	<ObjCProtocol name='FBGraphObject' file='FBGraphObject.h'>
+		<ConformsToProtocol name='NSObject'/>
+		<ObjCMethod selector='count'>
+			<ReturnValue canonical_type='unsigned int' type='NSUInteger' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='objectForKey:'>
+			<Parameter name='aKey' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='keyEnumerator'>
+			<ReturnValue canonical_type='NSEnumerator *' type='NSEnumerator *' kind='ObjCObjectPointer'/>
+		</ObjCMethod>
+		<ObjCMethod selector='removeObjectForKey:'>
+			<Parameter name='aKey' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setObject:forKey:'>
+			<Parameter name='anObject' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='aKey' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='provisionedForPost'>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+		<ObjCMethod selector='setProvisionedForPost:'>
+			<Parameter name='provisionedForPost' canonical_type='signed char' type='BOOL' kind='Builtin'/>
+			<ReturnValue canonical_type='void' type='void' kind='Builtin'/>
+		</ObjCMethod>
+	</ObjCProtocol>
+	<ObjCInterface name='FBGraphObject' super='NSMutableDictionary' file='FBGraphObject.h'>
+		<ConformsToProtocol name='FBGraphObject'/>
+		<ObjCMethod selector='graphObject' static='true'>
+			<ReturnValue canonical_type='NSMutableDictionary&lt;FBGraphObject&gt; *' type='NSMutableDictionary&lt;FBGraphObject&gt; *' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</ReturnValue>
+		</ObjCMethod>
+		<ObjCMethod selector='graphObjectWrappingDictionary:' static='true'>
+			<Parameter name='jsonDictionary' canonical_type='NSDictionary *' type='NSDictionary *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='NSMutableDictionary&lt;FBGraphObject&gt; *' type='NSMutableDictionary&lt;FBGraphObject&gt; *' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</ReturnValue>
+		</ObjCMethod>
+		<ObjCMethod selector='openGraphActionForPost' static='true'>
+			<ReturnValue canonical_type='NSMutableDictionary&lt;FBOpenGraphAction&gt; *' type='NSMutableDictionary&lt;FBOpenGraphAction&gt; *' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBOpenGraphAction'/>
+			</ReturnValue>
+		</ObjCMethod>
+		<ObjCMethod selector='openGraphObjectForPost' static='true'>
+			<ReturnValue canonical_type='NSMutableDictionary&lt;FBOpenGraphObject&gt; *' type='NSMutableDictionary&lt;FBOpenGraphObject&gt; *' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBOpenGraphObject'/>
+			</ReturnValue>
+		</ObjCMethod>
+		<ObjCMethod selector='openGraphObjectForPostWithType:title:image:url:description:' static='true'>
+			<Parameter name='type' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='title' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<Parameter name='image' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='url' canonical_type='id' type='id' kind='ObjCObjectPointer'/>
+			<Parameter name='description' canonical_type='NSString *' type='NSString *' kind='ObjCObjectPointer'/>
+			<ReturnValue canonical_type='NSMutableDictionary&lt;FBOpenGraphObject&gt; *' type='NSMutableDictionary&lt;FBOpenGraphObject&gt; *' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBOpenGraphObject'/>
+			</ReturnValue>
+		</ObjCMethod>
+		<ObjCMethod selector='isGraphObjectID:sameAs:' static='true'>
+			<Parameter name='anObject' canonical_type='id&lt;FBGraphObject&gt;' type='id&lt;FBGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</Parameter>
+			<Parameter name='anotherObject' canonical_type='id&lt;FBGraphObject&gt;' type='id&lt;FBGraphObject&gt;' kind='ObjCObjectPointer'>
+				<ConformsToProtocol name='FBGraphObject'/>
+			</Parameter>
+			<ReturnValue canonical_type='signed char' type='BOOL' kind='Builtin'/>
+		</ObjCMethod>
+	</ObjCInterface>
+</Metadata>
